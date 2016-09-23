@@ -225,14 +225,16 @@ Traceback:
 .. code-block:: python
     <script type="text/javascript" src="/static/collected/admin/js/vendor/jquery/jquery.js"></script>
 
-    {{ form.media }}..
+    {{ form.media }}
+..
 
 inside the template that you would like to render autocomplete field. Using this instead:
 
 .. code-block:: python
     <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
 
-    {{ form.media }}..
+    {{ form.media }}
+..
 
 
 may solve the problem. 
@@ -243,7 +245,8 @@ Also, check in your modelform if the field you used agrees with widget. If it is
     foreign_key_field = forms.ModelChoiceField(
         queryset=YourForeignKeyModel.objects.all(),
         widget=autocomplete.ModelSelect2(url='your_url_name')
-    )..
+    )
+..
 
 
 If it is a many-to-many field, make it:
@@ -252,6 +255,7 @@ If it is a many-to-many field, make it:
     foreign_key_field = forms.ModelMultipleChoiceField(
         queryset=YourForeignKeyModel.objects.all(),
         widget=autocomplete.ModelSelect2Multiple(url='your_url_name')
-    )..
+    )
+..
 
 
