@@ -220,9 +220,14 @@ Traceback:
     Exception Type: TypeError at /calbase/equipment/1/update/
     Exception Value: int() argument must be a string, a bytes-like object or a number, not 'Tests'
 
-.. solution:: This error may be caused by problem in javascript location. In the old documentation, it asks you to put:
+.. 
+
+
+
+solution:: This error may be caused by problem in javascript location. In the old documentation, it asks you to put:
 
 .. code-block:: python
+
     <script type="text/javascript" src="/static/collected/admin/js/vendor/jquery/jquery.js"></script>
 
     {{ form.media }}
@@ -231,6 +236,7 @@ Traceback:
 inside the template that you would like to render autocomplete field. Using this instead:
 
 .. code-block:: python
+
     <script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
 
     {{ form.media }}
@@ -242,6 +248,7 @@ may solve the problem.
 Also, check in your modelform if the field you used agrees with widget. If it is Foreign Key field, make it:
 
 .. code-block:: python
+
     foreign_key_field = forms.ModelChoiceField(
         queryset=YourForeignKeyModel.objects.all(),
         widget=autocomplete.ModelSelect2(url='your_url_name')
@@ -252,6 +259,7 @@ Also, check in your modelform if the field you used agrees with widget. If it is
 If it is a many-to-many field, make it:
 
 .. code-block:: python
+
     foreign_key_field = forms.ModelMultipleChoiceField(
         queryset=YourForeignKeyModel.objects.all(),
         widget=autocomplete.ModelSelect2Multiple(url='your_url_name')
